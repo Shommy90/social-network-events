@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import EventDetailedChat from "./EventDetailedChat";
 import EventDetailedHeader from "./EventDetailedHeader";
@@ -22,17 +22,17 @@ const EventDetailedPage = ({ event }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const eventId = ownProps.match.params.id
+  const eventId = ownProps.match.params.id;
 
-  let event = {}
+  let event = {};
 
   if (eventId && state.events.length > 0) {
-    event = state.events.filter(event => event.id === eventId)[0]
+    event = state.events.filter((event) => event.id === eventId)[0];
   }
 
   return {
-    event
-  }
-}
+    event,
+  };
+};
 
 export default connect(mapStateToProps)(EventDetailedPage);

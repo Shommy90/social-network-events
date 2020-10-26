@@ -1,8 +1,8 @@
 import cuid from "cuid";
 import React, { Component } from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { Button, Form, Segment } from "semantic-ui-react";
-import {createEvent, updateEvent} from '../eventActions'
+import { createEvent, updateEvent } from "../eventActions";
 
 class EventForm extends Component {
   state = { ...this.props.event };
@@ -19,15 +19,15 @@ class EventForm extends Component {
     e.preventDefault();
     if (this.state.id) {
       this.props.updateEvent(this.state);
-      this.props.history.push(`/events/${this.state.id}`)
+      this.props.history.push(`/events/${this.state.id}`);
     } else {
       const newEvent = {
         ...this.state,
         id: cuid(),
-        hostPhotoURL: '/assets/user.png'
-      }
+        hostPhotoURL: "/assets/user.png",
+      };
       this.props.createEvent(newEvent);
-      this.props.history.push(`/events`)
+      this.props.history.push(`/events`);
     }
   };
 
@@ -102,7 +102,7 @@ class EventForm extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const eventId = ownProps.match.params.id
+  const eventId = ownProps.match.params.id;
 
   let event = {
     title: "",
@@ -110,20 +110,20 @@ const mapStateToProps = (state, ownProps) => {
     city: "",
     venue: "",
     hostedBy: "",
-  }
+  };
 
   if (eventId && state.events.length > 0) {
-    event = state.events.filter(event => event.id === eventId)[0]
+    event = state.events.filter((event) => event.id === eventId)[0];
   }
 
   return {
-    event
-  }
-}
+    event,
+  };
+};
 
 const mapDispatchToProps = {
   createEvent,
-  updateEvent
-}
+  updateEvent,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventForm);

@@ -1,9 +1,9 @@
 const initialState = {
-    data: 42
-}
+  data: 42,
+};
 
 const testReducer = (state = initialState) => {
-    return state
-}
+  return state;
+};
 
-export default testReducer
+export default testReducer;
